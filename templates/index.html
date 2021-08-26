@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spacy Mad Libs</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div>
+    <h4>Enter a passage of text:</h4>
+    <textarea id='passage' style='width:80%;height:50%'>{{ default_passage }}</textarea>
+    <br/>
+    <button onclick='madlib();'>Remix</button>
+    <br/>
+    <div id='result' style='margin:25px;padding:25px;'></div>
+</div>
+
+
+<script>
+{% raw %}
+
+function madlib(){
+    var passage = document.getElementById('passage').value;
+    $.post( "/process", {'passage': passage}, function( data ) {
+        $( "#result" ).html( data.passage );
+    }).done(function (res) {console.log(res)}).fail(function (e) {console.log(e)});
+};
+
+{% endraw %}
+</script>
+
+</body>
+</html>
