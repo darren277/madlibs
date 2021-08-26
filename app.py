@@ -32,7 +32,7 @@ class MadLib:
         s = ""
 
         for token in doc:
-            print(token.tag_, token)
+            # print(token.tag_, token)
             if token.pos_ != 'PUNCT' and str(token).lower() not in stopwords:
                 if random.random() > PERCENT_OF_WORDS_TO_RANDOMIZE:
                     if token.tag_ == 'JJS':
